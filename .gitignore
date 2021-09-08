@@ -1,1 +1,6 @@
 *.exe
+*.zip
+*.mp4
+Recordings/
+.cph
+.vscode
