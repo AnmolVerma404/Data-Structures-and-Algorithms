@@ -39,6 +39,7 @@ node *NewNode(int value)
 // A function to declare the graph according to the number of vertex.
 Graph *CreateGraph(int n)
 {
+    int i;
     Graph *vlist = new Graph;
     vlist->v = n;
 
@@ -46,7 +47,7 @@ Graph *CreateGraph(int n)
     vlist->vl = new vertexlist[n];
 
     // Assign the head to NULL.
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n ; i++)
     {
         vlist->vl[i].vlisthead = NULL;
     }
@@ -63,11 +64,13 @@ void InsertNode(Graph *G, int v1, int v2)
     // Connection 1, v2 to v1.
     if (G->vl[v2].vlisthead == NULL)
     {
+        cout<<"First1\n";
         // If the head is null insert the node to the head.
         G->vl[v2].vlisthead = newnode1;
     }
     else
     {
+        cout<<"Second1\n";
         // Otherwise, add the node at the beginning.
         newnode1->link = G->vl[v2].vlisthead;
         G->vl[v2].vlisthead = newnode1;
@@ -75,11 +78,13 @@ void InsertNode(Graph *G, int v1, int v2)
     // Connection 2, v1 to v2.
     if (G->vl[v1].vlisthead == NULL)
     {
+        cout<<"First2\n";
         // If the head is null insert the node to the head.
         G->vl[v1].vlisthead = newnode2;
     }
     else
     {
+        cout<<"Second2\n";
         // Otherwise, add the node at the beginning.
         newnode2->link = G->vl[v1].vlisthead;
         G->vl[v1].vlisthead = newnode2;
