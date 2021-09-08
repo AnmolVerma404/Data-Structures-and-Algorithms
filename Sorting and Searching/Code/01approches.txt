@@ -1,0 +1,12 @@
+Brute Force:-It is a straight forward approach to solving a problem.
+    -Selection Sort
+    -Bubble Sort 
+    -Incertion Sort
+
+Divide and concure
+
+Greedy Algorithm
+
+Dynamic Programing
+
+Back Tracking
