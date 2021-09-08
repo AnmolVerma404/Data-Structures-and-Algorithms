@@ -27,7 +27,7 @@ public:
 };
 
 // A function to create a new data node.
-class node *NewNode(int value)
+node *NewNode(int value)
 {
     node *newnode = new node;
     newnode->data = value;
@@ -39,15 +39,14 @@ class node *NewNode(int value)
 // A function to declare the graph according to the number of vertex.
 Graph *CreateGraph(int n)
 {
-    int i;
     Graph *vlist = new Graph;
     vlist->v = n;
 
     // declare a list for n vertex.
-    vlist->vl = new vertexlist[n + 1];
+    vlist->vl = new vertexlist[n];
 
     // Assign the head to NULL.
-    for (i = 0; i < n + 1; i++)
+    for (int i = 0; i < n; i++)
     {
         vlist->vl[i].vlisthead = NULL;
     }
@@ -60,7 +59,6 @@ void InsertNode(Graph *G, int v1, int v2)
 {
     node *newnode1 = NewNode(v1);
     node *newnode2 = NewNode(v2);
-    node *temp = new node;
     // Since it is undirected graph, count each edge as two connection.
     // Connection 1, v2 to v1.
     if (G->vl[v2].vlisthead == NULL)
