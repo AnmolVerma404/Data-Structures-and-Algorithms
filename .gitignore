@@ -4,3 +4,5 @@
 Recordings/
 .cph
 .vscode
+*.java
+*.class
