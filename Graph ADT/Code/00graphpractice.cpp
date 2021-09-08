@@ -6,30 +6,30 @@ using namespace std;
 
 class node
 {
-    public:
+public:
     int data;
-     node *link;
+    node *link;
 };
 
 // A structure to represent list of vertexes connected to the given vertex.
 class vertexlist
 {
-    public:
-     node *vlisthead;
+public:
+    node *vlisthead;
 };
 
 // A structure to maintain the graph vertexes and its connections to other vertexes.
 class Graph
 {
-    public:
+public:
     int v;
-     vertexlist *vl;
+    vertexlist *vl;
 };
 
 // A function to create a new data node.
 class node *NewNode(int value)
 {
-     node *newnode = new node;
+    node *newnode = new node;
     newnode->data = value;
     newnode->link = NULL;
 
@@ -37,10 +37,10 @@ class node *NewNode(int value)
 }
 
 // A function to declare the graph according to the number of vertex.
- Graph *CreateGraph(int n)
+Graph *CreateGraph(int n)
 {
     int i;
-     Graph *vlist = new Graph;
+    Graph *vlist = new Graph;
     vlist->v = n;
 
     // declare a list for n vertex.
@@ -110,7 +110,7 @@ int main()
     // Take the input of the number of vertex and edges the graph have.
     cout << "Enter the number of vertexes of the graph: ";
     cin >> v;
-     Graph *G = CreateGraph(v);
+    Graph *G = CreateGraph(v);
     cout << "\nEnter the number of edges of the graph: ";
     cin >> e;
     int edge[e][2];
