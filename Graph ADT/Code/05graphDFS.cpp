@@ -1,7 +1,16 @@
+// https://www.geeksforgeeks.org/depth-first-search-or-dfs-for-a-graph/
 #include <bits/stdc++.h>
 
 using namespace std;
-
+/*
+Application :(https://www.geeksforgeeks.org/applications-of-depth-first-search/)
+            - Detecting a cycle in a graph
+            - Find the path form the sourse vertex to given vertex
+            - Topological sorting, only possible if the given graph is a directed Acyclic graph
+            - To test if a graph is bipartite (not that importang)
+            - Finding strongly connected components i.e. if all the vertices in the graph is connected to every vertices
+            - Maze problems
+*/
 class Graph
 {
     int V;
@@ -57,7 +66,7 @@ int main()
 {
     Graph g(5);
     /*
-    The order will matter on the first node that is added i.e. 0->1 aftere that if the change the order nothing will change
+    The order will matter on the first node that is added i.e. 0->1 aftere that if the change the order nothing will change or opposite of BFS
         - The node 0 will give 1
         - 1 will give 2
         - 2 will give 4

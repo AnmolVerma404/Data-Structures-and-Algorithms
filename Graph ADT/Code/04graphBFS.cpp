@@ -6,6 +6,15 @@ using namespace std;
 This is similar to BFS in BT but the only difference if we should not re-travell a same node or make a cycle
 To avoiding that we can use a boolean array
 */
+/*
+Application:
+            - Sortest path and minimum spanning tree in an Unweighted graph
+            - Pear to pear network eg: used in bit-torrent
+            - Crawlers in Search Engines or in simple word the website search appearence that we get while surfing in Google or bing etc...
+            - Social network website 
+            - GPS navigation system
+            - More in https://www.geeksforgeeks.org/applications-of-breadth-first-traversal/
+*/
 
 class Graph
 {
@@ -60,7 +69,7 @@ void Graph::bfs(int s)
 }
 
 int main()
-{
+{//In BFS the first node is independent of the position on the adding list i.e. 0->1 can be anywhere but the final result will be 2 0 3 1
     Graph g(4);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
