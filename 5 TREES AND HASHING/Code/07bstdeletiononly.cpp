@@ -4,16 +4,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node {
+struct node
+{
 	int key;
 	struct node *left, *right;
 };
 
 // A utility function to create a new BST node
-struct node* newNode(int item)
+struct node *newNode(int item)
 {
-	struct node* temp
-		= (struct node*)malloc(sizeof(struct node));
+	struct node *temp = (struct node *)malloc(sizeof(struct node));
 	temp->key = item;
 	temp->left = temp->right = NULL;
 	return temp;
@@ -21,9 +21,10 @@ struct node* newNode(int item)
 
 // A utility function to do
 // inorder traversal of BST
-void inorder(struct node* root)
+void inorder(struct node *root)
 {
-	if (root != NULL) {
+	if (root != NULL)
+	{
 		inorder(root->left);
 		cout << root->key;
 		inorder(root->right);
@@ -33,7 +34,7 @@ void inorder(struct node* root)
 /* A utility function to
 insert a new node with given key in
 * BST */
-struct node* insert(struct node* node, int key)
+struct node *insert(struct node *node, int key)
 {
 	/* If the tree is empty, return a new node */
 	if (node == NULL)
@@ -52,9 +53,9 @@ struct node* insert(struct node* node, int key)
 /* Given a non-empty binary search tree, return the node
 with minimum key value found in that tree. Note that the
 entire tree does not need to be searched. */
-struct node* minValueNode(struct node* node)
+struct node *minValueNode(struct node *node)
 {
-	struct node* current = node;
+	struct node *current = node;
 
 	/* loop down to find the leftmost leaf */
 	while (current && current->left != NULL)
@@ -65,7 +66,7 @@ struct node* minValueNode(struct node* node)
 
 /* Given a binary search tree and a key, this function
 deletes the key and returns the new root */
-struct node* deleteNode(struct node* root, int key)
+struct node *deleteNode(struct node *root, int key)
 {
 	// base case
 	if (root == NULL)
@@ -85,26 +86,29 @@ struct node* deleteNode(struct node* root, int key)
 
 	// if key is same as root's key, then This is the node
 	// to be deleted
-	else {
+	else
+	{
 		// node has no child
-		if (root->left==NULL and root->right==NULL)
+		if (root->left == NULL and root->right == NULL)
 			return NULL;
-	
+
 		// node with only one child or no child
-		else if (root->left == NULL) {
-			struct node* temp = root->right;
+		else if (root->left == NULL)
+		{
+			struct node *temp = root->right;
 			free(root);
 			return temp;
 		}
-		else if (root->right == NULL) {
-			struct node* temp = root->left;
+		else if (root->right == NULL)
+		{
+			struct node *temp = root->left;
 			free(root);
 			return temp;
 		}
 
 		// node with two children: Get the inorder successor
 		// (smallest in the right subtree)
-		struct node* temp = minValueNode(root->right);
+		struct node *temp = minValueNode(root->right);
 
 		// Copy the inorder successor's content to this node
 		root->key = temp->key;
@@ -124,7 +128,7 @@ int main()
 		30	 70
 		/ \ / \
 	20 40 60 80 */
-	struct node* root = NULL;
+	struct node *root = NULL;
 	root = insert(root, 50);
 	root = insert(root, 30);
 	root = insert(root, 20);
@@ -153,4 +157,3 @@ int main()
 
 	return 0;
 }
-
