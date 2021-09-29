@@ -1,68 +1,118 @@
-#include <iostream>
-#include <list>
+// A C++ program for Prim's Minimum
+// Spanning Tree (MST) algorithm. The program is
+// for adjacency matrix representation of the graph
+#include <bits/stdc++.h>
 using namespace std;
-//graph class for DFS travesal
-class Graph
-{
-    int V;                                // No. of vertices
-    list<int> *adjList;                   // adjacency list
-    void DFS_util(int v, bool visited[]); // A function used by DFS
-public:
-    // class Constructor
-    Graph(int V)
-    {
-        this->V = V;
-        adjList = new list<int>[V];
-    }
-    // function to add an edge to graph
-    void addEdge(int v, int w)
-    {
-        adjList[v].push_back(w); // Add w to v’s list.
-    }
 
-    void DFS(); // DFS traversal function
-};
-void Graph::DFS_util(int v, bool visited[])
-{
-    // current node v is visited
-    visited[v] = true;
-    cout << v << " ";
+// Number of vertices in the graph
+#define V 5
 
-    // recursively process all the adjacent vertices of the node
-    list<int>::iterator i;
-    for (i = adjList[v].begin(); i != adjList[v].end(); ++i)
-        if (!visited[*i])
-            DFS_util(*i, visited);
+// A utility function to find the vertex with
+// minimum key value, from the set of vertices
+// not yet included in MST
+int minKey(int key[], bool mstSet[])
+{
+    // Initialize min value
+    int min = INT_MAX, min_index;
+
+    for (int v = 0; v < V; v++)
+        if (mstSet[v] == false && key[v] < min)
+            min = key[v], min_index = v;
+
+    return min_index;
 }
 
-// DFS traversal
-void Graph::DFS()
+// A utility function to print the
+// constructed MST stored in parent[]
+void printMST(int parent[], int graph[V][V])
 {
-    // initially none of the vertices are visited
-    bool *visited = new bool[V];
-    for (int i = 0; i < V; i++)
-        visited[i] = false;
-
-    // explore the vertices one by one by recursively calling  DFS_util
-    for (int i = 0; i < V; i++)
-        if (visited[i] == false)
-            DFS_util(i, visited);
+    cout << "Edge \tWeight\n";
+    for (int i = 1; i < V; i++)
+        cout << parent[i] << " - " << i << " \t" << graph[i][parent[i]] << " \n";
 }
 
+// Function to construct and print MST for
+// a graph represented using adjacency
+// matrix representation
+void primMST(int graph[V][V])
+{
+    // Array to store constructed MST
+    int parent[V];
+
+    // Key values used to pick minimum weight edge in cut
+    int key[V];
+
+    // To represent set of vertices included in MST
+    bool mstSet[V];
+
+    // Initialize all keys as INFINITE
+    for (int i = 0; i < V; i++)
+        key[i] = INT_MAX, mstSet[i] = false;
+
+    // Always include first 1st vertex in MST.
+    // Make key 0 so that this vertex is picked as first vertex.
+    key[0] = 0;
+    parent[0] = -1; // First node is always root of MST
+
+    // The MST will have V vertices
+    for (int count = 0; count < V - 1; count++)
+    {
+        // Pick the minimum key vertex from the
+        // set of vertices not yet included in MST
+        int u = minKey(key, mstSet);
+
+        // Add the picked vertex to the MST Set
+        mstSet[u] = true;
+
+        // Update key value and parent index of
+        // the adjacent vertices of the picked vertex.
+        // Consider only those vertices which are not
+        // yet included in MST
+        for (int v = 0; v < V; v++)
+
+            // graph[u][v] is non zero only for adjacent vertices of m
+            // mstSet[v] is false for vertices not yet included in MST
+            // Update the key only if graph[u][v] is smaller than key[v]
+            if (graph[u][v] && mstSet[v] == false && graph[u][v] < key[v])
+            {
+                parent[v] = u;
+                key[v] = graph[u][v];
+            }
+    }
+
+    // print the constructed MST
+    printMST(parent, graph);
+}
+
+// Driver code
 int main()
 {
-    // Create a graph
-    Graph g(5);
-    g.addEdge(0, 1);
-    g.addEdge(0, 2);
-    g.addEdge(0, 3);
-    g.addEdge(1, 2);
-    g.addEdge(2, 4);
-    g.addEdge(3, 3);
-    g.addEdge(4, 4);
+    /* Let us create the following graph
+		2 3
+	(0)--(1)--(2)
+	| / \ |
+	6| 8/ \5 |7
+	| / \ |
+	(3)-------(4)
+			9	 */
+    // int graph[V][V] = {
+    //     {0, 9, 75, 0, 0},
+    //     {9, 0, 95, 19, 42},
+    //     {75, 95, 0, 51, 66},
+    //     {0, 19, 51, 0, 31},
+    //     {0, 42, 66, 31, 0}
+    // };
+    int graph[V][V] = {
+        {0, 2, 0, 6, 0},
+        {2, 0, 3, 8, 5},
+        {0, 3, 0, 0, 7},
+        {6, 8, 0, 0, 9},
+        {0, 5, 7, 9, 0}};
 
-    cout << "Depth-first traversal for the given graph:" << endl;
-    g.DFS();
+    // Print the solution
+    primMST(graph);
 
     return 0;
 }
+
+// This code is contributed by rathbhupendra
