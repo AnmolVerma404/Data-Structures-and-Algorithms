@@ -2,6 +2,7 @@
 *.zip
 *.mp4
 Recordings/
+Practice/
 .cph
 .vscode
 *.java
