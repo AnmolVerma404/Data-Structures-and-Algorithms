@@ -9,7 +9,7 @@ void swap(int *xp, int *yp)
 	*yp = temp;
 }
 
-void printArray(int*arr,int size);
+void printArray(int *arr, int size);
 
 // A function to implement bubble sort
 void bubbleSort(int arr[], int n)
@@ -22,7 +22,7 @@ void bubbleSort(int arr[], int n)
 		{
 			if (arr[j] > arr[j + 1])
 				swap(&arr[j], &arr[j + 1]);
-		printArray(arr, n);
+			printArray(arr, n);
 		}
 	}
 }
@@ -39,7 +39,7 @@ void printArray(int arr[], int size)
 // Driver code
 int main()
 {
-	int arr[] = {8,4,6,9,2,3,1};
+	int arr[] = {8, 4, 6, 9, 2, 3, 1};
 	int n = sizeof(arr) / sizeof(arr[0]);
 	bubbleSort(arr, n);
 	cout << "Sorted array: \n";
