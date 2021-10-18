@@ -22,6 +22,3 @@ int main()
     cout << dp[n];
     return 0;
 }
-/*
-$ git commit -am " Added fibonacci series code with explanation "
-*/
