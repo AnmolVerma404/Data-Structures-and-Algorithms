@@ -49,6 +49,7 @@ signed main()
 {
     int n;
     cin >> n;
+    // Here we set all values in dp to -1 as if we encounter it in line 27th conditional statement to check wether if have already find the minimum to avoid re-calculation
     memset(dp, -1, sizeof dp);
     for (int i = 0; i < n; i++)
     {
