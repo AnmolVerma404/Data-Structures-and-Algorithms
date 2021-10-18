@@ -39,6 +39,7 @@ int mcm(int i, int j)
     {
         // This will check the minimum of dp[i][j] or mcm(i,k) that will recursively solve the sub multiplication and similarly mcm(k+1,j) and a[i-1]*a[k]*a[j] will multiply the dimention 
         //If we see the main data is in array "a" that will give the minimum value
+        //In simple word k is for the bracket in the above example 
         dp[i][j] = min(dp[i][j], mcm(i, k) + mcm(k + 1, j) + a[i - 1] * a[k] * a[j]);
     }
     //Finally we return dp[i][j] and in the last recursive call the value of i and j will be 1 and n-1 respectively
@@ -49,7 +50,7 @@ signed main()
 {
     int n;
     cin >> n;
-    // Here we set all values in dp to -1 as if we encounter it in line 27th conditional statement to check wether if have already find the minimum to avoid re-calculation
+    // Here we set all values in dp to -1 as if we encounter it in mcm function conditional statement to check wether if have already find the minimum to avoid re-calculation
     memset(dp, -1, sizeof dp);
     for (int i = 0; i < n; i++)
     {

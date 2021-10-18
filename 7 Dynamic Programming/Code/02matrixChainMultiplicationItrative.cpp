@@ -24,6 +24,7 @@ signed main()
     {
         cin >> a[i];
     }
+    // We initilize all the diagonal element to 0
     for (int i = 1; i < n; i++)
     {
         dp[i][i] = 0;
@@ -36,10 +37,14 @@ signed main()
             dp[i][j] = MOD;
             for (int k = i; k < j; k++)
             {
+                // This will check the minimum of dp[i][j] or dp[i][k] that already have been solved and similarly dp[k+1][j] and a[i-1]*a[k]*a[j] will multiply the dimention
+                //If we see the main data is in array "a" that will give the minimum value
+                //Here k is simply the bracket in the above example or the location of the bracket if it make sence!!!
                 dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j] + a[i - 1] * a[k] * a[j]);
             }
         }
     }
+    //Finally we print dp[1][n-1] which will store the minimum
     cout << dp[1][n - 1];
     return 0;
 }
