@@ -21,26 +21,22 @@ int main()
     string t = "apna college";
     int T = t.size(), S = s.size();
     power[0] = 1;
-    cout<<"Yes\n";
     for (int i = 1; i < N; i++)
     {
         power[i] = (power[i - 1] * p) % m;
     }
-    cout<<"Yes\n";
     // h : hash of string t
     vector<ll> h(T + 1, 0);
     for (int i = 0; i < T; i++)
     {
         h[i + 1] = (h[i] + (t[i] - 'a' + 1) * power[i]) % m;
     }
-    cout<<"Yes\n";
     // h_s : hash of string s
     ll h_s = 0;
     for (int i = 0; i < S; i++)
     {
         h_s = (h_s + (s[i] - 'a' + 1) * power[i]) % m;
     }
-    cout<<"Yes\n";
     // i + S -1 so that we don't go out of bound
     for (int i = 0; i + S - 1 < T; i++)
     {
@@ -50,6 +46,5 @@ int main()
             cout << "Found at index " << i << "\n";
         }
     }
-    cout<<"Yes\n";
     return 0;
 }
