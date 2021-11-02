@@ -7,7 +7,7 @@ using namespace std;
 
 int p = 31;
 const int N = 1e5 + 7, m = 1e6 + 7;
-vector<ll> power;
+vector<ll> power(N);
 
 /*
     s -> pattern
