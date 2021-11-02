@@ -17,9 +17,10 @@ vector<ll> power(N);
 
 int main()
 {
-    string s = "na";
-    string t = "apna college";
+    string s = "dba";
+    string t = "ccaccaaedba";
     int T = t.size(), S = s.size();
+    // Precalculating power with DP
     power[0] = 1;
     for (int i = 1; i < N; i++)
     {
@@ -27,19 +28,28 @@ int main()
     }
     // h : hash of string t
     vector<ll> h(T + 1, 0);
+    // The for loop will store the hash value in string t
     for (int i = 0; i < T; i++)
     {
         h[i + 1] = (h[i] + (t[i] - 'a' + 1) * power[i]) % m;
     }
     // h_s : hash of string s
     ll h_s = 0;
+    // The for loop will store the hash value in string s
     for (int i = 0; i < S; i++)
     {
         h_s = (h_s + (s[i] - 'a' + 1) * power[i]) % m;
     }
     // i + S -1 so that we don't go out of bound
+    /*
+    Eg-
+           01      012345
+        s->ab ; t->acabad
+        the for loop will stop at index 4 as if it check for index and that is out of bound because s.length in 2 and t.length is 6
+    */
     for (int i = 0; i + S - 1 < T; i++)
     {
+        // Here we are adding m so curr_h don't go -ve
         ll curr_h = (h[i + S] - h[i] + m) % m;
         if (curr_h == (h_s * power[i]) % m)
         {
