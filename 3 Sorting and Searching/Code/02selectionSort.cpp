@@ -16,10 +16,12 @@ void selectionSort(int arr[], int n)
     int i, j, min_idx;
 
     // One by one move boundary of unsorted subarray
+    // Loop up to n-1 as, if i is at n-1 the array n-1 element are sorted that mean the last one is also sorted
     for (i = 0; i < n - 1; i++)
     {
         // Find the minimum element in unsorted array
         min_idx = i;
+        // form i + 1 as, there is not gain in comparing arr[j] < arr[min_idx] where j == min_idx
         for (j = i + 1; j < n; j++)
             if (arr[j] < arr[min_idx])
                 min_idx = j;
