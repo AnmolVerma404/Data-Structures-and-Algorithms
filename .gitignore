@@ -5,7 +5,6 @@ Recordings/
 Practice/
 .cph
 .vscode
-*.java
 *.class
 *.bin
 *00dR.cpp
