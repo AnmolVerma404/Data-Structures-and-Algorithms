@@ -11,7 +11,8 @@ Adjacency List stores a graph into a list that is mutable therefore we need not 
   3 0 1 0 0               3 (1)
 
 From the above example, we can easily see an n*n size matrix with soo much extra space whereas the list only consists of nodes which is actually present in the graph.
-The value in the list/matrix can be the weight of edges or a boolean value or different things
+The value in the list/matrix can be the weight of edges or a boolean value or different things.
+Time complexity when Adj. Matrix is used is - O(V^2) and when Adj. List is used is O(V+E) where V is vertex and E is Edge
 */
 #include <bits/stdc++.h>
 

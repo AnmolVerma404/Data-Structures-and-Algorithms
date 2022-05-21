@@ -7,7 +7,7 @@ It stores the true or false values of whether a node is visited or not.
 
 using namespace std;
 
-void Bfs(int size, vector<vector<int>> g)
+void Bfs(int size, vector<vector<int>> &g)
 {
     //bfs vector will store the bfs traversal so that it can later be used or printed
     vector<int> bfs;
@@ -57,6 +57,7 @@ int main()
         {3, 5},
         {0, 1, 4}};
     int size = graph.size();
+    //Time Complexity - O(V+E) where V is vertex and E is Edge
     Bfs(size, graph);
     /*
     Output - 0 1 5 2 3 4
