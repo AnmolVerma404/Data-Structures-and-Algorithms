@@ -12,7 +12,7 @@ void Bfs(int size, vector<vector<int>> &g)
     //bfs vector will store the bfs traversal so that it can later be used or printed
     vector<int> bfs;
     //visited array as discussed will store whether the node is already visited or not
-    vector<bool> visited(size + 1, false);
+    vector<bool> visited(size, false);
     //This for loop is necessary, as if the graph is disconnected some node may not be reachable but still are in graph
     for (int i = 0; i < size; i++)
     {
