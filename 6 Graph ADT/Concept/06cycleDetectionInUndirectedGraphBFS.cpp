@@ -45,9 +45,13 @@ bool bfs(vector<vector<int>> g)
 
 int main()
 {
-    vector<vector<int>> g = {{1},
-                             {2},
-                             {1}};
+    vector<vector<int>> g = {
+        {1, 5},
+        {0, 2, 5, 3},
+        {1, 3},
+        {1, 2, 4},
+        {3, 5},
+        {0, 1, 4}};
     cout << bfs(g);
     return 0;
 }
