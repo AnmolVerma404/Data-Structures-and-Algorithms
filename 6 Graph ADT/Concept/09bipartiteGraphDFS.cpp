@@ -7,12 +7,16 @@ using namespace std;
 
 bool bipartiteDFS(vector<vector<int>> &g, vector<int> &color, int i)
 {
-    color[i] = 1;//Set the current node color to 1
+    //Below we have an additional conditional statement, it's for cheking if graph is already visited do not update it's color to 1 as it's will be used later for checking if color[j] == color[i]
+    if(color[i] == -1) color[i] = 1;//Set the current node color to 1
     for (auto j : g[i])
     {
         if (color[j] == -1)//If the next node is not visited
         {
             color[j] = 1 - color[i];//Set the next node color to opposite of parent node i.e. 0 if 1 or 1 if 0
+            if(!bipartiteDFS(g,color,j)){
+                return false;
+            }
         }
         else if (color[j] == color[i])//If next node is already visited check if the next node and the current node color are the same. If they are return false. Which implies the graph is not bipartite
         {
