@@ -1,4 +1,3 @@
-
 public class maneuveringACave {
     public static void main(String[] args) {
         int n = 5, m = 4;
