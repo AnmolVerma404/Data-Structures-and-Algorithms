@@ -1,3 +1,4 @@
+// TC - O(n) SC - O(1)
 public class lexicographicalFirstPalindromicString {
     static char MAX_CHAR = 26;
     public static void main(String[] args) {
