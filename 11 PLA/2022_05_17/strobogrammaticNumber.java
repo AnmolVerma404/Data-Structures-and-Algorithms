@@ -30,9 +30,9 @@ public class strobogrammaticNumber {
             }
         }
         if (crom == false || temp != num) {
-            System.out.println("Not a PseudoCromatic Number");
+            System.out.println("Not a strobogrammatic Number");
         } else if (temp == num) {
-            System.out.println("It's a PseudoCromatic Number");
+            System.out.println("It's a strobogrammatic Number");
         }
     }
 

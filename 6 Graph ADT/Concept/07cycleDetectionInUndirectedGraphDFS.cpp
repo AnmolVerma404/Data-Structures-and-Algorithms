@@ -18,7 +18,7 @@ bool cycleDetection(vector<vector<int>> &g, bool visited[], int i, int p)
                 return true;//If somewher cycle is present return true
             }
         }
-        else if (j != p)//If parent is equal to current node i.e. j return true
+        else if (j != p)//If parent is not equal to current node i.e. j return true
         {
             return true;
         }

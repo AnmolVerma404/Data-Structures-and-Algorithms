@@ -4,6 +4,7 @@ public class divideSwapMergeBN {
         int n = bNum.length();
         // nibbles(bNum, n);
         System.out.println(nibbleBitwise(n));
+        // System.out.println((0x0F));
     }
 
     public static void nibbles(String bNum, int n) {
@@ -22,7 +23,7 @@ public class divideSwapMergeBN {
         System.out.println(splitedSwapedBN);
     }
 
-    public static int nibbleBitwise(int n){
-        return ((n & 0x0F) << 4| (n& 0xF0) >> 4);
+    public static int nibbleBitwise(int n) {
+        return ((n & 0x0F) << 4 | (n & 0xF0) >> 4);
     }
 }
