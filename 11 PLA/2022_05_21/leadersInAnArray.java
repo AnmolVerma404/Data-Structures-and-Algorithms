@@ -1,3 +1,4 @@
+// TC - O(n) SC - O(n)
 public class leadersInAnArray {
     public static void main(String[] args) {
         // int[] arr = { 10, 8, 7, 9, 11, -2, 0, 8, 9, 10 };

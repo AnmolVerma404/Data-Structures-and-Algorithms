@@ -1,5 +1,5 @@
 // https://www.geeksforgeeks.org/eulers-totient-function/
-//TC - O(n^((1/2)log(n))) ~ n^1.56
+//TC - O(nlog(n)) SC - logn
 public class eulersPhiALgo {
     static int phi(int n) {
         // Initialize result as n

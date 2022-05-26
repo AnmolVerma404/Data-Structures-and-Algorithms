@@ -1,3 +1,4 @@
+// TC - O(n^1.59) SC - O(n)
 public class karatsubaAlgo {
     public static void main(String[] args) {
         long x = 2, y = 1000;

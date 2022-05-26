@@ -1,3 +1,4 @@
+// TC - O(n^2) SC - O(1)
 public class selectionSort {
     public static void main(String[] args) {
         int[] arr = { -81, -12, 0, 6, 44, 2, 10 };

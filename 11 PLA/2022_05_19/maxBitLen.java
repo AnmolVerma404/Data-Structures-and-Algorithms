@@ -1,3 +1,4 @@
+// TC - O(n) SC - O(n) 
 public class maxBitLen {
     public static void main(String[] args) {
         String s = "1110000011011";

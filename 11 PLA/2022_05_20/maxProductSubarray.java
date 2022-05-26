@@ -1,3 +1,4 @@
+// TC - O(n) SC - O(1)
 import javax.swing.plaf.synth.SynthSpinnerUI;
 
 public class maxProductSubarray {

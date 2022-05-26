@@ -1,4 +1,4 @@
-//TC - O(n(log(log(n))))
+//TC - O(((n)^1/2)(log(log(n))))
 public class segmentedSieve {
     static void segmentedSieve(int n)
     {

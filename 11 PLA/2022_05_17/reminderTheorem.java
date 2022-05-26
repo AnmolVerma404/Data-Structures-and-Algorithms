@@ -1,4 +1,5 @@
 // https://www.geeksforgeeks.org/chinese-remainder-theorem-set-2-implementation/
+// TC - nlogn SC - O(1)
 public class reminderTheorem {
     public static void main(String[] args) {
         //Chienese reminder theorem

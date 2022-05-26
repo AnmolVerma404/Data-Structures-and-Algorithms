@@ -1,3 +1,4 @@
+// TC - O(n^2) SC - O(1)
 public class maxSumHourGlassMatrix {
     public static void main(String[] args) {
         int[][] matrix = { { 1, 1, 1, 0, 0 },
@@ -11,35 +12,31 @@ public class maxSumHourGlassMatrix {
         maxSum(matrix);
     }
 
-    static int findMaxSum(int [][]mat)
-{
-    if (R < 3 || C < 3)
-        return -1;
- 
-    // Here loop runs (R-2)*(C-2)
-    // times considering different
-    // top left cells of hour glasses.
-    int max_sum = Integer.MIN_VALUE;
-    for (int i = 0; i < R - 2; i++)
-    {
-        for (int j = 0; j < C - 2; j++)
-        {
-            // Considering mat[i][j] as top
-            // left cell of hour glass.
-            int sum = (mat[i][j] + mat[i][j + 1] +
-                       mat[i][j + 2]) + (mat[i + 1][j + 1]) +
-                       (mat[i + 2][j] + mat[i + 2][j + 1] +
-                       mat[i + 2][j + 2]);
- 
-            // If previous sum is less then
-            // current sum then update
-            // new sum in max_sum
-            max_sum = Math.max(max_sum, sum);
+    static int findMaxSum(int[][] mat) {
+        if (R < 3 || C < 3)
+            return -1;
+
+        // Here loop runs (R-2)*(C-2)
+        // times considering different
+        // top left cells of hour glasses.
+        int max_sum = Integer.MIN_VALUE;
+        for (int i = 0; i < R - 2; i++) {
+            for (int j = 0; j < C - 2; j++) {
+                // Considering mat[i][j] as top
+                // left cell of hour glass.
+                int sum = (mat[i][j] + mat[i][j + 1] +
+                        mat[i][j + 2]) + (mat[i + 1][j + 1]) +
+                        (mat[i + 2][j] + mat[i + 2][j + 1] +
+                                mat[i + 2][j + 2]);
+
+                // If previous sum is less then
+                // current sum then update
+                // new sum in max_sum
+                max_sum = Math.max(max_sum, sum);
+            }
         }
+        return max_sum;
     }
-    return max_sum;
-}
- 
 
     public static void maxSum(int[][] m) {
         int row = m.length;
@@ -58,9 +55,9 @@ public class maxSumHourGlassMatrix {
                 }
             }
             if (i >= row) {
-                
-            } 
-            if(j>=col){
+
+            }
+            if (j >= col) {
 
             }
         }

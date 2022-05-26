@@ -1,3 +1,4 @@
+// TC - O(n) SC - O(1) 
 public class binaryPalindrom {
     public static void main(String[] args) {
         int n = 17;

@@ -1,4 +1,4 @@
-//TC - O(n(log(log(n)))) - 
+//TC - O(n(log(log(n)))) SC - O(logn)
 #include <bits/stdc++.h>
 
 using namespace std;

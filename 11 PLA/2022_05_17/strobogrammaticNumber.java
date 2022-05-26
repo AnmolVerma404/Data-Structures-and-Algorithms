@@ -1,4 +1,5 @@
 // https://www.geeksforgeeks.org/strobogrammatic-number/
+// TC - O(n) SC - O(n) 
 import java.util.*;
 
 public class strobogrammaticNumber {

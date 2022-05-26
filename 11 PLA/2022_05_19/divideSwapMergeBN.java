@@ -1,3 +1,4 @@
+// TC - O(n)  SC - O(1) 
 public class divideSwapMergeBN {
     public static void main(String[] args) {
         String bNum = "10011011";

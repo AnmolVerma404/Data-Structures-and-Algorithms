@@ -1,3 +1,4 @@
+// TC - O(loh(min(a,b))) SC - O(1) 
 import java.math.BigInteger;
 
 public class eucledianAlgoForGCD {

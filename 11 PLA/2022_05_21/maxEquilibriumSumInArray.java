@@ -1,8 +1,9 @@
+// TC - O(n) SC - O(1)
 public class maxEquilibriumSumInArray {
     public static void main(String[] args) {
-        int[] arr = { 3, 4, 10, 17 };
-        // int[] arr = { 1,2,3,0,3,2,1};
-        // int []arr = { -2, 5, 3, 1, 2, 6, -4, 2 };
+        // int[] arr = { 3, 4, 10, 17 };
+        // int[] arr = { -1,2,3,0,3,2,-1};
+        int []arr = { -2, 5, 3, 1, 2, 6, -4, 2 };
         int n = arr.length;
         maxEquilibrium(arr, n);
     }
