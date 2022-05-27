@@ -1,34 +1,41 @@
+/*
+DFS is already previously explained only logic behind Cycle checking in Directed Graph is present here!!!
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
 
-bool dfsCycle(vector<vector<int>> &g, vector<bool> &visited, int i,int p)
+bool dfsCycle(vector<vector<int>> &g, vector<bool> &visited, vector<bool> &dfsVisited, int i)
 {
     visited[i] = true;
+    dfsVisited[i] = true;
     for (auto j : g[i])
     {
-        if (!visited[j])
+        if (visited[j] == false)
         {
-            if (dfsCycle(g, visited, j,i))
+            if (dfsCycle(g, visited, dfsVisited, j))
             {
                 return true;
             }
-        }else if(j!=p){
-            cout<<j<<" "<<p<<"\n";
+        }
+        else if (dfsVisited[j] == true)
+        {
             return true;
         }
     }
+    dfsVisited[i] = false;
     return false;
 }
 
-bool cycle(vector<vector<int>> &g, int n)
+bool dfs(vector<vector<int>> g, int n)
 {
     vector<bool> visited(n, false);
+    vector<bool> dfsVisited(n, false);
     for (int i = 0; i < n; i++)
     {
-        if (!visited[i])
+        if (visited[i] == false)
         {
-            if (dfsCycle(g, visited, i,-1))
+            if (dfsCycle(g, visited, dfsVisited, i))
             {
                 return true;
             }
@@ -51,6 +58,6 @@ int main()
         {9},
         {7}};
     int n = g.size();
-    cout << cycle(g, n);
+    cout << dfs(g, n);
     return 0;
 }

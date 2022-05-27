@@ -1,7 +1,7 @@
 // TC - O(n)  SC - O(1) 
 public class divideSwapMergeBN {
     public static void main(String[] args) {
-        String bNum = "10011011";
+        String bNum = "01100100";
         int n = bNum.length();
         // nibbles(bNum, n);
         System.out.println(nibbleBitwise(n));
