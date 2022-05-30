@@ -3,6 +3,7 @@
 *.mp4
 Recordings/
 Practice/
+Solved/
 .cph
 .vscode
 *.class
