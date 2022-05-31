@@ -1,5 +1,6 @@
 /*
 Topological Sort using DFS traversal algo can be done using an extra array containing all the indegree's of a node.
+Also this algo is known as Kahn's Algorithm
 Why need of an extra array?
 As we know in BFS all the adjacent node are explored and in DFS we explore the first not visited node and continue to do it, by that in dfs we can keep track of one single path whereas in BFS we are exploring all the adjacent node so we need an extra infromation to get the information about how many node are connected to current node.
 As we know inDegree give information about how many node are direction towards the current node, and in topological sort in a graph of edge from u to v, u should always come before v.
