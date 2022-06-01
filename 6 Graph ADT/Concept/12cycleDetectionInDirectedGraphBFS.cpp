@@ -1,3 +1,7 @@
+/*
+To detect cycle in Directed Graph using BFS this technique is a kind of hack as we are using topological sort for it.
+As in topological sort, it only works on DAG i.e. Directed Acyclic Graph, therefor we can use it and from the resultant list can check wether the size of it match the number of vertices in the graph and it should be exactly equal and it it is then we can say there is no cycle in the directed graph or else there is an cycle in the graph
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -33,8 +37,8 @@ bool bfs(vector<vector<int>> &g, int n)
             }
         }
     }
-    if(count == n) return true;
-    return false;
+    if(count == n) return false;
+    return true;
 }
 
 int main()
