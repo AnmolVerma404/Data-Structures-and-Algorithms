@@ -14,15 +14,10 @@ public class loopDetection {
     public static void main(String[] args) {
         linkedList obj = new linkedList(1);
         linkedList head = obj;
-        obj.next = new linkedList(2);
-        obj = obj.next;
-        obj.next = new linkedList(3);
-        obj = obj.next;
-        obj.next = new linkedList(3);
-        obj = obj.next;
-        obj.next = new linkedList(4);
-        obj = obj.next;
-        obj.next = new linkedList(5);
+        for(int i = 1;i<=5;i++){
+            obj.next = new linkedList(i);
+            obj = obj.next;
+        }
         obj.next = head;
         linkedList slow = head, fast = head;
         boolean loopPresent = false;
