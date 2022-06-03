@@ -33,10 +33,10 @@ public class theCelebrityProblem {
     }
 
     public static void main(String[] args) {
-        int m[][] = { { 0, 0, 1, 0 },
+        int m[][] = { { 1, 1, 1, 1 },
                 { 0, 0, 1, 0 },
-                { 0, 0, 0, 0 },
-                { 0, 0, 1, 0 } };
+                { 0, 0, 1, 0 },
+                { 1, 1, 1, 1 } };
         int res = findCeleb(m);
         if (res == -1) {
             System.out.println("No Celebrity Found");

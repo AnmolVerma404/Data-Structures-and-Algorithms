@@ -5,6 +5,8 @@ We are going to need the help of topoligical sorting and also an distance array 
 So way do we need topological sorting?
 As we know in topolocal sorting we get the final result from which we can say that every node in a graph which has an edge from vertices u to v where u will come before v in the topological sort.
 So using that result we can find the shortest path and we need not to care about conditions like if the uth node dist will be infinity at the point when it's passed the vth vertex.
+Point to notice - In the actual shortest path finding algo i.e. after topo sort we are not using any visited array because we are using a distance array and the condition which is playing the major role is - If the prev shortest path found is smaller that the current path found we will not add update the node and if it's smaller i.e. new shorter path found we will update it.
+In next code of dijkstra it will be more clear
 */
 #include <bits/stdc++.h>
 
