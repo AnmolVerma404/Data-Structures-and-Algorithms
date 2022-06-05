@@ -15,6 +15,9 @@ void dijkstra(int n, vector<vector<pair<int, int>>> &g)
     distance[0] = 0;
     while (!pq.empty())
     {
+        /*
+        If you are confused in the variable naming you can take your own also, and the variable dist is not beeing used here as we can just get that information using the prev variable and the distance vector
+        */
         int dist = pq.top().first;//This will store the current shortest distance of previous(prev) node
         int prev = pq.top().second;//previous node
         pq.pop();
