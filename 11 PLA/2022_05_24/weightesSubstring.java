@@ -1,11 +1,11 @@
 public class weightesSubstring {
     public static void main(String[] args) {
         String s = "HelloWorld";
-        String wt = "4987653215";
-        // String wt = "1111111111";
+        // String wt = "4987653215";
+        String wt = "1111111111";
         int k = 20;
-        // wtSubstring(s, wt, k);//
-        opWtSubstring(s, wt, k);//29
+        wtSubstring(s, wt, k);//
+        // opWtSubstring(s, wt, k);//29
     }
 
     public static void wtSubstring(String s, String wt, int k) {
