@@ -6,6 +6,7 @@ To solve huffman coding
     1 Ascii Value
     2 Define your own binary value and map them with the real binary val of character
     3 Use binary min heap
+O(Nlog(N))
 */
 public class huffmanCoding {
     static class pair {

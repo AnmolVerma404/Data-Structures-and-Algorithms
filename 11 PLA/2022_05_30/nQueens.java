@@ -1,3 +1,6 @@
+/*
+N Queen - O(n^2) O(n)
+*/
 public class nQueens {
     public static void main(String[] args) {
         int n = 8;

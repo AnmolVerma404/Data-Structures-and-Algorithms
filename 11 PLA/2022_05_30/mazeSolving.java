@@ -1,3 +1,7 @@
+/*
+TC - O(2^n^2)
+If just want to calculate count we can use an algo which have TC of O(m*n)
+*/
 public class mazeSolving {
     public static void main(String[] args) {
         // int[][] matrix = { { 1, 0, 0, 0 }, { 1, 0, 0, 0 }, { 1, 1, 1, 1 }, { 0, 1, 1, 1 } };

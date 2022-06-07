@@ -1,3 +1,7 @@
+/*
+Time complexity-: O(n) 
+Auxiliary Space-: O(1)
+*/
 public class moveHyphenToBeginning {
     public static void main(String[] args) {
         String s = "__Hello_World_";

@@ -1,7 +1,9 @@
 import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.Map;
-
+/*
+O(n^2)
+*/
 public class warnsdorffsAlgo {
     public static void main(String[] args) {
         int n = 8;

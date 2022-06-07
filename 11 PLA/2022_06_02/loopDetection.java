@@ -1,5 +1,10 @@
 import java.util.LinkedList;
-
+/*
+Two pointer
+TC - O(N) ASC - O(1)
+Hash Map
+TC - O(N) ASC - O(N)
+*/
 public class loopDetection {
     public static class linkedList {
         int val;

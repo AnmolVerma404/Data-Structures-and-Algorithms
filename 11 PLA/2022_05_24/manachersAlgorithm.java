@@ -1,4 +1,5 @@
 // Java program to implement Manacher's Algorithm
+// Time Complexity - O(n)
 import java.util.*;
 
 class manachersAlgorithm
@@ -110,6 +111,3 @@ class manachersAlgorithm
 		findLongestPalindromicString(text);
 	}
 }
-
-// This code is contributed by
-// sanjeev2552

@@ -8,7 +8,7 @@ Finally print parent vector
 
 using namespace std;
 
-void prims(int n, vector<vector<pair<int, int>>> &g)
+void prims(int n, vector<vector<pair<int, int>>> &g) // Time Complexity - O(n^2)
 {
     vector<int> key(n, INT_MAX);   // This will store the weight of the node
     vector<int> parent(n, -1);     // Parent vector will store parent node information
@@ -16,10 +16,10 @@ void prims(int n, vector<vector<pair<int, int>>> &g)
     key[0] = 0;                    // Starting node
     parent[0] = -1;                // Starting node dosen't have a parent node in MST as discussed in MST.
 
-    for (int i = 0; i < n - 1; i++)//As MST have N-1 vertex we will run this loop for n-1 times
+    for (int i = 0; i < n - 1; i++) // As MST have N-1 vertex we will run this loop for n-1 times
     {
         int mn = INT_MAX, u;
-        for (int j = 0; j < n; j++)//This will get the minimum next node which can we used next in MST
+        for (int j = 0; j < n; j++) // This will get the minimum next node which can we used next in MST
         {
             if (mstSet[j] == false && key[j] < mn)
             {
@@ -27,25 +27,57 @@ void prims(int n, vector<vector<pair<int, int>>> &g)
                 u = j;
             }
         }
-        mstSet[u] = true;//Set the smallest weighted to true in mst Set
+        mstSet[u] = true; // Set the smallest weighted to true in mst Set
 
-        for (auto it : g[u])//Find all the connected node to the uth node in the graph
+        for (auto it : g[u]) // Find all the connected node to the uth node in the graph
         {
-            int node = it.first;//Get the node of uth neighbor
-            int wt = it.second;//Get the weight of the uth neighbor
-            if (mstSet[node] == false && wt < key[node])//If neighbor node is not already a part of MST and it's new weight is less than the key weight
-            //Point to notice wt<key[node] is the condition in which key[node] may or may not be INT_MAX i.e. infinity. If the node have already been visited but not added in MST that this step will store the smallest wright for the neighbor node
+            int node = it.first;                         // Get the node of uth neighbor
+            int wt = it.second;                          // Get the weight of the uth neighbor
+            if (mstSet[node] == false && wt < key[node]) // If neighbor node is not already a part of MST and it's new weight is less than the key weight
+            // Point to notice wt<key[node] is the condition in which key[node] may or may not be INT_MAX i.e. infinity. If the node have already been visited but not added in MST that this step will store the smallest wright for the neighbor node
             {
-                //Update parent to next node and key weight to new node
+                // Update parent to next node and key weight to new node
                 parent[node] = u;
                 key[node] = wt;
             }
         }
     }
-    //Finally print all the node that have connection
+    // Finally print all the node that have connection
     for (int i = 1; i < n; i++)
     {
-        cout << i << " " << parent[i] << "\n";//Here i is the node and parent[i] is the node which is connected to the ith node.
+        cout << i << " " << parent[i] << "\n"; // Here i is the node and parent[i] is the node which is connected to the ith node.
+    }
+}
+
+void primsOpt(int n, vector<vector<pair<int, int>>> &g)//Time complexity - O((N+E)log(N))
+{
+    vector<int> key(n, INT_MAX);
+    vector<int> parent(n, -1);
+    vector<bool> mstSet(n, false);
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; //{a,b} a is weight and b is node
+    key[0] = 0;
+    parent[0] = -1;
+    pq.push({0, 0});
+    for (int i = 0; i < n - 1; i++)
+    {
+        int u = pq.top().second;
+        pq.pop();
+        mstSet[u] = true;
+        for (auto i : g[u])
+        {
+            int node = i.first;
+            int wt = i.second;
+            if (mstSet[node] == false && wt < key[node])
+            {
+                parent[node] = u;
+                key[node] = wt;
+                pq.push({key[node], node});
+            }
+        }
+    }
+    for (int i = 1; i < n; i++)
+    {
+        cout << i << " " << parent[i] << "\n";
     }
 }
 
@@ -59,5 +91,7 @@ int main()
                                         {{1, 5}, {2, 7}}};
     int n = g.size();
     prims(n, g);
+    cout << '\n';
+    primsOpt(n, g);
     return 0;
 }

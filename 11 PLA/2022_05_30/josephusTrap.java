@@ -1,5 +1,8 @@
 import java.util.ArrayList;
-
+/*
+Time Complexity: O(n)
+Auxiliary Space: O(n)
+*/
 public class josephusTrap {
     public static void main(String[] args) {
         int n = 14;

@@ -1,3 +1,6 @@
+/*
+TC - O(Nlog^2(N)) SC - O(1)
+*/
 public class sortTheBitonicDLL {
     static class linkedList {
         int val;

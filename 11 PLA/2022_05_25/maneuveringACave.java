@@ -17,6 +17,7 @@ public class maneuveringACave {
     }
 
     public static int numberOfPath(int n, int m) {
+        // Time Complexity - O(2^n)
         if (m == 1 || n == 1) {
             return 1;
         }

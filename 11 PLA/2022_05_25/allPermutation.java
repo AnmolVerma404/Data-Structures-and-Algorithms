@@ -1,6 +1,7 @@
 // https://www.geeksforgeeks.org/print-distinct-sorted-permutations-with-duplicates-allowed/
 // Java program to print all permutations of a string
 // in sorted order.
+// Time Complexity - O(N*M)
 import java.io.*;
 import java.util.*;
 

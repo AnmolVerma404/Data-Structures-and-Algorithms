@@ -3,6 +3,7 @@ In this problem we will be given a graph and list of color of length equal to nu
 We have two solution for this problem statement 
     1 Traversal (BFS/DFS)
     2 Backtracking
+Time Complexity: O(V^2 + E)
 */
 public class graphColoring {
     public static void main(String[] args) {
