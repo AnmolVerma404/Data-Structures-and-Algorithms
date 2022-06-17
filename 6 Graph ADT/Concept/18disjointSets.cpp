@@ -26,33 +26,34 @@ void makeSet()
 {
     for (int i = 0; i < n; i++)
     {
-        parent[i] = 1;
-        ranks[i] = 0;
+        parent[i] = i;//Initially set the parent of a node to itself
+        ranks[i] = 0;//And set all the ranks to 0
     }
 }
 
 int findParent(int node)
 {
-    if (node == parent[node])
+    if (node == parent[node])//if node is equal to it's parent node that mean we are on the parent node therefore return the node
     {
         return node;
     }
-    return parent[node] = findParent(parent[node]);
+    return parent[node] = findParent(parent[node]);//if node was not it's parent node that mean we need to traverse even more therefore pass the parent of the current node, also setting parent[node] will do path compression for the parent array so all the node will point to the parent node and we can get the parent node in constant time
 }
 
 void unionOperation(int u, int v)
 {
-    u = findParent(u);
-    v = findParent(v);
-    if (ranks[u] < ranks[v])
+    u = findParent(u);//Find the parent of u
+    v = findParent(v);//Find the parent of v
+    //Now check the rank of u and v
+    if (ranks[u] < ranks[v])//If rank of u is less that of v we can add the smaller set to larger one
     {
         parent[u] = v;
     }
-    else if (ranks[v] < ranks[u])
+    else if (ranks[v] < ranks[u])//Opposite of above case
     {
         parent[v] = u;
     }
-    else
+    else//If both of u and v rank are equal that can add the set into any other set but also we have to increase the rank of the set we are adding the other set of...
     {
         parent[v] = u;
         ranks[u]++;
@@ -68,9 +69,9 @@ int main()
     {
         int u, v;
         cin >> u >> v;
-        unionOperation(u, v);
+        unionOperation(u, v);//Take node as an input and insert them in set
     }
-    if (findParent(3) == findParent(7))
+    if (findParent(3) == findParent(7))//To find if the parent of the node's are same or not
     {
         cout << "Same Parent\n";
     }

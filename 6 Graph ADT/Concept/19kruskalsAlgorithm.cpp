@@ -8,7 +8,7 @@ Space Complexity - O(N)
 
 using namespace std;
 
-class node
+class node//Define a class to store the edge between u and v and it's weight
 {
 public:
     int u;
@@ -22,19 +22,19 @@ public:
     }
 };
 
-bool comp(node a, node b)
+bool comp(node a, node b)//To sort the vector by weight
 {
     return a.wt < b.wt;
 }
 
-int findParent(int u, vector<int> &parent)
+int findParent(int u, vector<int> &parent)//Find the parent
 {
     if (u == parent[u])
         return u;
     return parent[u] = findParent(parent[u], parent);
 }
 
-void unionn(int u, int v, vector<int> &parent, vector<int> &rank)
+void unionn(int u, int v, vector<int> &parent, vector<int> &rank)//Union of two sets
 {
     u = findParent(u, parent);
     v = findParent(v, parent);
@@ -56,7 +56,7 @@ void unionn(int u, int v, vector<int> &parent, vector<int> &rank)
 int main()
 {
     int n = 5, m = 6;
-    vector<node> edges;
+    vector<node> edges;//Define edges graph, we don't need 2D graph as we are just storing the edges and weight
     edges.push_back(node(0, 1, 2));
     edges.push_back(node(0, 3, 6));
     edges.push_back(node(1, 0, 2));
@@ -69,24 +69,25 @@ int main()
     edges.push_back(node(3, 1, 8));
     edges.push_back(node(4, 1, 5));
     edges.push_back(node(4, 2, 7));
-    sort(edges.begin(), edges.end(), comp);
-
-    vector<int> parent(n);
+    sort(edges.begin(), edges.end(), comp);//Sort the edges vector by it;s weight
+    //Disjoint Set (for more explanation refer to disjoint set file)
+    vector<int> parent(n);//Define parent
     for (int i = 0; i < n; i++)
-        parent[i] = i;
-    vector<int> rank(n, 0);
-    int cost = 0;
-    vector<pair<int, int>> mst;
+        parent[i] = i;//Initially set the parent of a node to itself
+    vector<int> rank(n, 0);//Define rank vector
+    int cost = 0;//Cost is the total weight of the MST
+    vector<pair<int, int>> mst;//This will store the mst
     for (auto it : edges)
     {
-        if (findParent(it.v, parent) != findParent(it.u, parent))
+        if (findParent(it.v, parent) != findParent(it.u, parent))//This is to check if adding the edge will not create a cycle
         {
+            //Increment the cost and add the node to the mst vector also apply union operation to them
             cost += it.wt;
             mst.push_back({it.u, it.v});
             unionn(it.u, it.v, parent, rank);
         }
     }
-    cout << cost << "\n";
+    cout << cost << "\n";//Finally print out the result
     for (auto it : mst)
         cout << it.first << "-" << it.second << "\n";
 
