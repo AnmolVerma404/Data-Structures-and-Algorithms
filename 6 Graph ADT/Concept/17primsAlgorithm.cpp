@@ -3,6 +3,7 @@ Prims Algorithm is use to find MST of a graph, MST have been discussed in it's f
 In prims algorithm we start with a node eg. 0 and we find the connected node to 0 which have the smallest weight eg. 1 and mark it true in the mstSet and by that I mean it's a part of MST, also mark the next node parent as 0 and set the key to the weight b/w 0 and the next smallest node.
 Now visit next node i.e. 1 and find the smallest unvisited node of both 0 and 1 and add it in mstset and setParent and key for it and repeat this process.
 Finally print parent vector
+TC - O((V+E)logV)
 */
 #include <bits/stdc++.h>
 
@@ -49,33 +50,40 @@ void prims(int n, vector<vector<pair<int, int>>> &g) // Time Complexity - O(n^2)
     }
 }
 
-void primsOpt(int n, vector<vector<pair<int, int>>> &g)//Time complexity - O((N+E)log(N))
+void primsOpt(int n, vector<vector<pair<int, int>>> &g) // Time complexity - O((N+E)log(N))
 {
+    // Everything is same as the brute force approach, define a key, parent, and mstSet
     vector<int> key(n, INT_MAX);
     vector<int> parent(n, -1);
     vector<bool> mstSet(n, false);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq; //{a,b} a is weight and b is node
+    //Key[0] is 0 as it's the starting node and parent of first node in MST is -1 that is defining null
     key[0] = 0;
     parent[0] = -1;
+    //Push 0 and 0 in the min heap, we are pushing 0 and 0 as the first weight is 0 and the first node is 0
     pq.push({0, 0});
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n - 1; i++)//MST have N-1 Edges
     {
-        int u = pq.top().second;
-        pq.pop();
-        mstSet[u] = true;
-        for (auto i : g[u])
+        /*
+        The below line is the main difference b/w the brute force approach(defined in prims function) in that we were traversing the key list to find the smallest node and here we are storing it in min heap which will always contain that on it's top.
+        */
+        int u = pq.top().second;//Get the node of the top element as weight can be accessed by it, also weight is the factor by which min heap is sorted
+        pq.pop();//Remove the top element from the min heap
+        mstSet[u] = true;//Set the node that we got from heap to true in mstSet as we are including it in MST
+        for (auto i : g[u])//Traverse the node and get the adjacent node to the current node
         {
-            int node = i.first;
-            int wt = i.second;
-            if (mstSet[node] == false && wt < key[node])
+            int node = i.first;//Adjacent node
+            int wt = i.second;//Their weight
+            if (mstSet[node] == false && wt < key[node])//If the adj node is not yet visited and it's weight is less that key weight of that node(Explained in brute force function)
             {
+                //Update the values
                 parent[node] = u;
                 key[node] = wt;
-                pq.push({key[node], node});
+                pq.push({key[node], node});//Add the update value in min heap
             }
         }
     }
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; i++)//Finally print all the nodes in the parent 
     {
         cout << i << " " << parent[i] << "\n";
     }
