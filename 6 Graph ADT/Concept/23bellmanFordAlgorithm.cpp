@@ -22,20 +22,20 @@ public:
 void bellmanFord(vector<node> &g, int n)
 {
     int inf = 10000000;
-    vector<int> dist(n, inf);
-    dist[0] = 0;
-    for (int i = 1; i < n; i++)
+    vector<int> dist(n, inf);//Set the dist list
+    dist[0] = 0;//Set the source dist to 0
+    for (int i = 1; i < n; i++)//Iterate through n node
     {
-        for (auto it : g)
+        for (auto it : g)//For every iteration iterate in graph also
         {
-            if (dist[it.u] + it.wt < dist[it.v])
+            if (dist[it.u] + it.wt < dist[it.v])//Update dist
             {
                 dist[it.v] = dist[it.u] + it.wt;
             }
         }
     }
     int fl = 0;
-    for (auto it : g)
+    for (auto it : g)//As for n node n iteration are enough for getting the shortest path, if we do another iteration and if we again get even shorter weight, we can say our graph include negative cycle
     {
         if (dist[it.u] + it.wt < dist[it.v])
         {
@@ -44,7 +44,7 @@ void bellmanFord(vector<node> &g, int n)
             break;
         }
     }
-    if (!fl)
+    if (!fl)//If node print all the distance
     {
         for (int i = 0; i < n; i++)
         {
