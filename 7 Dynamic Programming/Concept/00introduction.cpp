@@ -29,4 +29,14 @@ Shortcut for solving any recursion/DP problem
 Also remember the base case is really-really important as is the memoization way, most of the solution will be starting from their only.
 
 After this you will be able to write the recursion then memoize it, then convert it into tabulation then space optimise it. 
+
+**Important**
+How to read my explanation
+1 Read what's written in the top of code file. It will include the problem statement/or the explanation of it
+2 Go to the main function and read line by line (i.e. if function call go to it and when it's finished go to main and to the next function it there is one)
+3 Function's given are in the order of TC and SC therefore the second solution/function in the main function will be better than the first one.
+4 While in the function if it's recursive then read the base case after reading the resursive code, it will explain you what is the need of that base condition.
+
+
+Hope you like my work😀😀
 */
