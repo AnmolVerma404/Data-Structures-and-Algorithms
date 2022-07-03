@@ -32,60 +32,60 @@ int gridUniquePathMamoizationDP(int n, int m, vector<vector<int>> &dp)
 {
     if (n == 0 && m == 0)
     {
-        return dp[n][m] = 1;
+        return dp[n][m] = 1;//Always while returning same it in dp vector
     }
     if (n < 0 || m < 0)
         return 0;
-    if (dp[n][m] != -1)
+    if (dp[n][m] != -1)//If the nth and mth point is already visited then no need to recompute, just return the previously calculated result
         return dp[n][m];
     int up = gridUniquePathMamoizationDP(n - 1, m, dp);
     int left = gridUniquePathMamoizationDP(n, m - 1, dp);
-    return dp[n][m] = up + left;
+    return dp[n][m] = up + left;//Save the nth and mth result, which define number of possible path from n,m to 0,0. Now they can be reused later.
 }
 
 int gridUniquePathTabulationDP(int n, int m)
 {
-    vector<vector<int>> dp(n, vector<int>(m, -1));
-    dp[0][0] = 1;
+    vector<vector<int>> dp(n, vector<int>(m, -1));//Define a dp vector of size n*m
+    dp[0][0] = 1;//Base case when n == 0 and m == 0 return , therefore here we store 1
     for (int i = 0; i < n; ++i)
     {
         for (int j = 0; j < m; ++j)
         {
-            if (i == 0 && j == 0)
+            if (i == 0 && j == 0)//Base base already stored
                 continue;
             int up = 0, left = 0;
-            if (i != 0)
+            if (i != 0)//Edge case, if i is zero we cant go negative therefor continue
                 up = dp[i - 1][j];
-            if (j != 0)
+            if (j != 0)//Edge case, if j is zero we cant go negative therefor continue
                 left = dp[i][j - 1];
-            dp[i][j] = up + left;
+            dp[i][j] = up + left;//Now for the ith and jth index sum the up and left and you will get the paths
         }
     }
-    return dp[n - 1][m - 1];
+    return dp[n - 1][m - 1];//Finally return the nth-1 and mth -1 as it stores grids unique paths
 }
 
 int gridUniquePathTabulationSpaceOptimizationDP(int n, int m)
 {
-    vector<int> prev(m, 0);
+    vector<int> prev(m, 0);//To store the previous.
     for (int i = 0; i < n; ++i)
     {
-        vector<int> temp(m, 0);
+        vector<int> temp(m, 0);//This will store current row, we need to get the j-1th unique path
         for (int j = 0; j < m; ++j)
         {
-            if (i == 0 && j == 0){
+            if (i == 0 && j == 0){//Base case
                 temp[i] = 1;
                 continue;
             }
             int up = 0, left = 0;
-            if (i > 0)
-                up = prev[i - 1];
-            if (j > 0)
-                left = temp[j - 1];
-            temp[j] = up + left;
+            if (i > 0)//Edge case, if i > 0 that means we cam visit previous row without index out of bound error
+                up = prev[i - 1];//Save in up, therefore take the stored result from previous array
+            if (j > 0)//Edge case, if j > 0 that means we cam visit current row without index out of bound error
+                left = temp[j - 1];//Save in left, therefore take the stored result from current array, as this was calculated in the last jth iteration(2nd for loop)
+            temp[j] = up + left;//Add up both paths
         }
-        prev = temp;
+        prev = temp;//Now the prev becomes current
     }
-    return prev[m - 1];
+    return prev[m - 1];//Finally return prev[m-1] which will store the matrix unique path
 }
 
 int main()
@@ -94,12 +94,23 @@ int main()
 
     cout << gridUniquePathRecursion(n - 1, m - 1) << "\n";//TC - O(2^(n*m)) SC - O(n-1 + m-1)[stack space] + O(1)[Auxiliary space]
 
-    vector<vector<int>> dp(n, vector<int>(m, -1));
-    cout << gridUniquePathMamoizationDP(n - 1, m - 1, dp) << "\n";
+    /*
+    As the above approach was taking exponential time which is not good at all!!!. Therefore we can observe that
+    there are overlapping subproblems in this problem, i.e. at any point matrix[n][m] we found how many ways are possible from 
+    that point, and that mean if another recursion call come and visit matrix[n][m] the result will be the same, therefore we
+    can store the result in n*m array
+    */
+    vector<vector<int>> dp(n, vector<int>(m, -1));//So define a n*m vector
+    cout << gridUniquePathMamoizationDP(n - 1, m - 1, dp) << "\n";//TC - O(n*m) SC - O(n-1 + m-1)[stack space] + O(n*m)[dp array space]
 
-    cout << gridUniquePathTabulationDP(n, m) << "\n";
+    /*
+    To get rid of stack space we need to convert the solution into tabulation formate, i.e. instead of making recursively
+    call from top to down, we will build our way from bottom to up!!!
+    */
+    cout << gridUniquePathTabulationDP(n, m) << "\n";//TC - O(n*m) SC - O(n*m)[dp vector space]
 
-    cout << gridUniquePathTabulationSpaceOptimizationDP(n, m) << "\n";
+    //From the solution we can observe that, at a iteration we only need current and last matrix row. Therefore we can further reduce the space complexity
+    cout << gridUniquePathTabulationSpaceOptimizationDP(n, m) << "\n";//TC - O(n*m) SC - O(m)[for storing current and prev row]
 
     return 0;
 }
