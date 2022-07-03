@@ -36,6 +36,7 @@ How to read my explanation
 2 Go to the main function and read line by line (i.e. if function call go to it and when it's finished go to main and to the next function it there is one)
 3 Function's given are in the order of TC and SC therefore the second solution/function in the main function will be better than the first one.
 4 While in the function if it's recursive then read the base case after reading the resursive code, it will explain you what is the need of that base condition.
+Also the return condition should be readed after the base condition's and other condition are readen. 
 
 
 Hope you like my work😀😀
