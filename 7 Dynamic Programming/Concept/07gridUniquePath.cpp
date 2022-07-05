@@ -1,5 +1,6 @@
 /*
 In this problem we will be given 2 integer input n and m, here n is the lenght of row, and m is the length of column of a 2D matrix we need to find all the unique path that are available from starting position i.e. 0,0 to the end position i.e. n-1,m-1. Also it's given that you can only move down and right!!!
+There can be an additional problem which is base on the same logic and almost same code, in which we will be given a grid in which g[i][j] can be 0 and -1, if it's -1 we can't follow that path, and if 0 then we can. We just need to add an extra conditional statement i.e. if(g[n][m]==-1) return 0 will solve the code!!!
 
 Approach 
 As we need to find all the possible path, therefore first thing in our mind should be recursion.
@@ -32,7 +33,7 @@ int gridUniquePathMamoizationDP(int n, int m, vector<vector<int>> &dp)
 {
     if (n == 0 && m == 0)
     {
-        return dp[n][m] = 1;//Always while returning same it in dp vector
+        return dp[n][m] = 1;//Always while returning save it in dp vector
     }
     if (n < 0 || m < 0)
         return 0;
