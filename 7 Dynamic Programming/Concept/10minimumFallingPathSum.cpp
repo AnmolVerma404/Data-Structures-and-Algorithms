@@ -10,17 +10,18 @@ using namespace std;
 
 int minimumFallingPathSumRec(int i, int j, int n, vector<vector<int>> &v)
 {
-    if (j < 0 || j >= n)
+    if (j < 0 || j >= n)//Base case when index is out of bound
         return 1e6;
 
-    if (i == 0)
+    if (i == 0)//If i is on zero that mean, we have to chose the jth column and return it
         return v[i][j];
 
-    int up = v[i][j] + minimumFallingPathSumRec(i - 1, j, n, v);
-    int upLeft = v[i][j] + minimumFallingPathSumRec(i - 1, j - 1, n, v);
-    int upRight = v[i][j] + minimumFallingPathSumRec(i - 1, j + 1, n, v);
+    //Three direction recursion call therefore the time complexity is O(3^n)
+    int up = v[i][j] + minimumFallingPathSumRec(i - 1, j, n, v);//For moving up call a recursion
+    int upLeft = v[i][j] + minimumFallingPathSumRec(i - 1, j - 1, n, v);//For moving up left
+    int upRight = v[i][j] + minimumFallingPathSumRec(i - 1, j + 1, n, v);//For moving up right
 
-    return min(up, min(upLeft, upRight));
+    return min(up, min(upLeft, upRight));//Find the minimum among the three direction we recursively call
 }
 
 int minimumFallingPathSumRecDP(int i, int j, int n, vector<vector<int>> &v, vector<vector<int>> &dp)
@@ -31,14 +32,14 @@ int minimumFallingPathSumRecDP(int i, int j, int n, vector<vector<int>> &v, vect
     if (i == 0)
         return v[i][j];
 
-    if (dp[i][j] != -1)
+    if (dp[i][j] != -1)//If already calculated return the stored result
         return dp[i][j];
 
     int up = v[i][j] + minimumFallingPathSumRecDP(i - 1, j, n, v, dp);
     int upLeft = v[i][j] + minimumFallingPathSumRecDP(i - 1, j - 1, n, v, dp);
     int upRight = v[i][j] + minimumFallingPathSumRecDP(i - 1, j + 1, n, v, dp);
 
-    return dp[i][j] = min(up, min(upLeft, upRight));
+    return dp[i][j] = min(up, min(upLeft, upRight));//Store the calculated value, so it can in future
 }
 
 int minimumFallingPathSumTabulationDP(int n, vector<vector<int>> &v)
@@ -47,13 +48,17 @@ int minimumFallingPathSumTabulationDP(int n, vector<vector<int>> &v)
 
     for (int j = 0; j < n; ++j)
     {
+        //Base case, as we were returning the jth column when reaching 0th index
+        //Therefore we need to do the same here, store it in dp[0]th row
         dp[0][j] = v[0][j];
     }
 
-    for (int i = 1; i < n; ++i)
+    for (int i = 1; i < n; ++i)//Start from the first row, as base case already solved
     {
         for (int j = 0; j < n; ++j)
         {
+            //Calculate all the three direction, this is tabulation case therefore we don't need to recursively call
+            //the function. Also take care of edge case, if upLeft and upRight are out of bound set there value to a big integer.
             int up = v[i][j] + dp[i - 1][j];
             int upLeft = 1e6, upRight = 1e6;
 
@@ -66,20 +71,22 @@ int minimumFallingPathSumTabulationDP(int n, vector<vector<int>> &v)
                 upRight = v[i][j] + dp[i - 1][j + 1];
             }
 
-            dp[i][j] = min(up, min(upLeft, upRight));
+            dp[i][j] = min(up, min(upLeft, upRight));//Find which direction gives the minimum for the jth column in the ith row
         }
     }
 
-    int mn = INT_MAX;
+    int mn = INT_MAX;//Now the last row of DP vector store the minimum value from there reach, find out the minimum...
     for (auto &it : dp[n - 1])
     {
         mn = min(mn, it);
     }
-    return mn;
+    return mn;//Finally return the minimum value
 }
 
 int minimumFallingPathSumTabulationDPSpaceOptimization(int n, vector<vector<int>> &v)
 {
+    //If we observe the tabulation, we can see only last row in every iteration of column in being use.
+    //So we just store that instead of storing in 2D DP
     vector<int> prev(n, 0);
 
     for (int j = 0; j < n; ++j)
@@ -89,7 +96,7 @@ int minimumFallingPathSumTabulationDPSpaceOptimization(int n, vector<vector<int>
 
     for (int i = 1; i < n; ++i)
     {
-        vector<int> curr(n, 0);
+        vector<int> curr(n, 0);//For current row, so they can be interchanged later for the next row
         for (int j = 0; j < n; ++j)
         {
             int up = v[i][j] + prev[j];
@@ -104,9 +111,9 @@ int minimumFallingPathSumTabulationDPSpaceOptimization(int n, vector<vector<int>
                 upRight = v[i][j] + prev[j + 1];
             }
 
-            curr[j] = min(up, min(upLeft, upRight));
+            curr[j] = min(up, min(upLeft, upRight));//Store the current row result in the curr vector
         }
-        prev = curr;
+        prev = curr;//set prev to curr, so in the next iteration prev can be used to calculate the next to the next row...
     }
 
     int mn = INT_MAX;
@@ -114,29 +121,32 @@ int minimumFallingPathSumTabulationDPSpaceOptimization(int n, vector<vector<int>
     {
         mn = min(mn, it);
     }
-    return mn;
+    return mn;//Return the minimum result
 }
 
 int main()
 {
-    vector<vector<int>> v = {{2, 1, 3},
+    vector<vector<int>> v = {{2, 1, 3},//Define a n*m matrix
                              {6, 5, 4},
                              {7, 8, 9}};
     int n = v.size();
 
     // Recursion TC - O(3^n) SC - O(n) + O(2n-2)[Stack Space]
+    //As we need to find smallest one from a row, therefore we need to recursively call the function,
+    //so we get the minimum for that jth element and compare it with previous minimum elements
     int mnRec = INT_MAX;
     for (int j = 0; j < n; ++j)
     {
         mnRec = min(mnRec, minimumFallingPathSumRec(n - 1, j, n, v));
     }
-    cout << mnRec << "\n";
+    cout << mnRec << "\n";//Print the minimum path sum
 
     // Recursion + DP i.e. Mamoization TC - O(n) SC - O(n*n) + O(2n-2)[Stack Space]
     int mnRecDP = INT_MAX;
-    vector<vector<int>> dp(n, vector<int>(n, -1));
+    vector<vector<int>> dp(n, vector<int>(n, -1));//Create a 2D vector to store overlapping sub problems
     for (int j = 0; j < n; ++j)
     {
+        //Similar to recursive to the same just make use DP vector also
         mnRecDP = min(mnRecDP, minimumFallingPathSumRecDP(n - 1, j, n, v, dp));
     }
     cout << mnRecDP << "\n";
