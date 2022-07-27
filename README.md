@@ -1,4 +1,25 @@
-<h1 align="center"> Data Structures And Algorithms </h1>
+<h1 align="center"><b>Data Structures And Algorithms</b></h1>
+
+<h2><b>Resources</b></h2>
+<h3>From where to solve problem</h3>
+
+* [DSA Sheets]()
+
+
+<h3>Youtube channels to follow</h3>
+
+* [Take you Forward -- Striver](https://www.youtube.com/c/takeUforward)
+
+* [Gaurav Sen](https://www.youtube.com/c/GauravSensei)
+
+* [Code With Harry](https://www.youtube.com/c/CodeWithHarry)
+
+* [Aditya Verma](https://www.youtube.com/c/AdityaVermaTheProgrammingLord)
+
+* [Luv](https://www.youtube.com/c/LuvIsMe)
+
+* [Tushar Roy](https://www.youtube.com/user/tusharroy2525)
+
 
 <h3>Contents</h3>
 
