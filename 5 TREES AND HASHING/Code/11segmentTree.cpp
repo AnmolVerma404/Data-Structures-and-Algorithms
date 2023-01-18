@@ -6,7 +6,7 @@
  *         2) Total Overlap
  *                 Just return the number bound to this range which have a total overlap
  *         3) No Overlap
- *                 Return a MAX_INT number.
+ *                 Return a MAX_INT number. Or return 0. Depends on code. I have returned 0.
  * To find the number of node/elements of the binary tree we need to form with size of the array
  *         1) If the array.size() is a power of 2. Then nodes = array.size()*2-1 Eg:- If size = 4 -> nodes = 4*2-1 = 7
  *         2) If the size of array is not of power of 2. Then find the next power of 2 from the number.
@@ -30,9 +30,9 @@ const int N = 1e5 + 2;
 int a[N], tree[4 * N];
 
 /*
- * node - current index, is base case node will cantain index of root node.
- * st - start of the current segment
- * en - end of the current segment
+ * node - it stores index of tree.
+ * st   - start of the current segment
+ * en   - end of the current segment
  */
 void build(int node, int st, int en)
 {
@@ -67,6 +67,55 @@ void build(int node, int st, int en)
     tree[node] = tree[2 * node] + tree[2 * node + 1];
 }
 
+/*
+ * node -> it stores index of tree.
+ * st   -> start of the current segment
+ * en   -> end of the current segment
+ * l    -> this will store the left most index of the range query
+ * r    -> this will store the right most index of the range query
+ */
+int query(int node, int st, int en, int l, int r)
+{
+    /*
+     * No Overlap condition
+     * When the start is greater than the right most index.
+     * And the left is end is less then the left most index.
+     * Sequence -> en .... l || r .... st
+     */
+    if (st > r || en < l)
+    {
+        return 0;
+    }
+
+    /*
+     * Total Overlap condition
+     * The current segment lies inside the l and r range
+     * Therefore no need of further recurcive call.
+     * As the result of tree[node] will be added to the query of l and r sum.
+     *  Sequence -> l .... st .... en .... r
+     */
+    if (st >= l && en <= r)
+    {
+        return tree[node];
+    }
+
+    /*
+     * Partial Overlap condition
+     * For example given an array [1,2,3,4,........,n-1,n]
+     * At some case if it break down to range [1,2]
+     *               [1,2]
+     *              /    |
+     *            [1]   [2]
+     * If l = 1. Therefore tree[node]==1 will return 0. As base case
+     * And 2 is partial overlap in [1,2] therefore right will return 2. As it's total overlap.
+     * Sequence -> st .... l .... en .... r || l .... st .... r .... en
+     */
+    int mid = (st + en) / 2;
+    int left = query(node * 2, st, mid, l, r);
+    int right = query(node * 2 + 1, mid + 1, en, l, r);
+    return left + right;
+}
+
 int main()
 {
     int n;
@@ -83,10 +132,31 @@ int main()
         cin >> a[i];
     }
     build(1, 0, n - 1);
-
-    for (int i = 1; i < 15; ++i)
+    /*
+     * Print the segment tree formed.
+     */
+    for (int i = 1; i < n * 2 - 1; ++i)
     {
         cout << tree[i] << "\n";
+    }
+    /*
+     * Range Sum Query
+     */
+    while (true)
+    {
+        int type;
+        cin >> type;
+        if (type == -1)
+        {
+            break;
+        }
+        else if (type == 1)
+        {
+            int l, r;
+            cin >> l >> r;
+            int ans = query(1, 0, n - 1, l, r);
+            cout << ans << "\n";
+        }
     }
     return 0;
 }
