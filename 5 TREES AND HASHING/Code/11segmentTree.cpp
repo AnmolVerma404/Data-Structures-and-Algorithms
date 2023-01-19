@@ -6,7 +6,10 @@
  *         2) Total Overlap
  *                 Just return the number bound to this range which have a total overlap
  *         3) No Overlap
- *                 Return a MAX_INT number. Or return 0. Depends on code. I have returned 0.
+ *                 Return a INT_MAX number. Or return 0. Depends on code. I have returned 0.
+ *                 INT_MAX or INT_MIN is returned in case when we need to find the min or
+ *                 the max element in a range l to r respectively.
+ * This is the code for finding the sum in the range l and r. For max num in range l and r. Look 12th file
  * To find the number of node/elements of the binary tree we need to form with size of the array
  *         1) If the array.size() is a power of 2. Then nodes = array.size()*2-1 Eg:- If size = 4 -> nodes = 4*2-1 = 7
  *         2) If the size of array is not of power of 2. Then find the next power of 2 from the number.
