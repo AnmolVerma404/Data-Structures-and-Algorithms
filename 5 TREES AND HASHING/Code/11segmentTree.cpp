@@ -33,9 +33,9 @@ const int N = 1e5 + 2;
 int a[N], tree[4 * N];
 
 /*
- * node - it stores index of tree.
- * st   - start of the current segment
- * en   - end of the current segment
+ * @param node -> it stores index of tree.
+ * @param st   -> start of the current segment
+ * @param en   -> end of the current segment
  */
 void build(int node, int st, int en)
 {
@@ -71,11 +71,11 @@ void build(int node, int st, int en)
 }
 
 /*
- * node -> it stores index of tree.
- * st   -> start of the current segment
- * en   -> end of the current segment
- * l    -> this will store the left most index of the range query
- * r    -> this will store the right most index of the range query
+ * @param node -> it stores index of tree.
+ * @param st   -> start of the current segment
+ * @param en   -> end of the current segment
+ * @param l    -> this will store the left most index of the range query
+ * @param r    -> this will store the right most index of the range query
  */
 int query(int node, int st, int en, int l, int r)
 {
@@ -119,6 +119,44 @@ int query(int node, int st, int en, int l, int r)
     return left + right;
 }
 
+/*
+ * @param node -> it stores index of tree.
+ * @param st   -> start of the current segment
+ * @param en   -> end of the current segment
+ * @param idx  -> this will store the index of in array 'a' that is to be updated
+ * @param val  -> this will store the value that is to be updated on index idx.
+ */
+void update(int node, int st, int en, int idx, int val)
+{
+    if (st == en)
+    {
+        /*
+         * Update the value of the tree[node] and a[st] to val
+         */
+        tree[node] = val;
+        a[st] = val; // Not necessary if we are building the entire tree again
+        return;
+    }
+    int mid = (st + en) / 2;
+    /*
+     * No need to update both. As only a[idx] has been updated
+     * If idx<=mid i.e. only the left side of tree need to be updated.
+     */
+    if (idx <= mid)
+    {
+        update(2 * node, st, mid, idx, val);
+    }
+    else
+    {
+        update(2 * node + 1, mid + 1, st, idx, val);
+    }
+    /*
+     * At this point of time idx of value must be updated.
+     * Therefore backtrack and update it's sum that was stored
+     */
+    tree[node] = tree[2 * node] + tree[2 * node + 1];
+}
+
 int main()
 {
     int n;
@@ -159,6 +197,13 @@ int main()
             cin >> l >> r;
             int ans = query(1, 0, n - 1, l, r);
             cout << ans << "\n";
+        }
+        else if (type == 2)
+        {
+            int idx, val;
+            cin >> idx >> val;
+            update(1, 0, n - 1, idx, val);
+            cout << query(1, 0, n - 1, 0, n - 1) << "\n";
         }
     }
     return 0;
