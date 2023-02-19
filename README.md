@@ -3,23 +3,21 @@
 <h2><b>Resources</b></h2>
 <h3>From where to solve problem</h3>
 
-* [DSA Sheets](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/13%20DSA%20Sheets)
-
+- [DSA Sheets](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/13%20DSA%20Sheets)
 
 <h3>Youtube channels to follow</h3>
 
-* [Take you Forward -- Striver](https://www.youtube.com/c/takeUforward)
+- [Take you Forward -- Striver](https://www.youtube.com/c/takeUforward)
 
-* [Gaurav Sen](https://www.youtube.com/c/GauravSensei)
+- [Gaurav Sen](https://www.youtube.com/c/GauravSensei)
 
-* [Code With Harry](https://www.youtube.com/c/CodeWithHarry)
+- [Code With Harry](https://www.youtube.com/c/CodeWithHarry)
 
-* [Aditya Verma](https://www.youtube.com/c/AdityaVermaTheProgrammingLord)
+- [Aditya Verma](https://www.youtube.com/c/AdityaVermaTheProgrammingLord)
 
-* [Luv](https://www.youtube.com/c/LuvIsMe)
+- [Luv](https://www.youtube.com/c/LuvIsMe)
 
-* [Tushar Roy](https://www.youtube.com/user/tusharroy2525)
-
+- [Tushar Roy](https://www.youtube.com/user/tusharroy2525)
 
 <h3>Contents</h3>
 
@@ -36,6 +34,8 @@
 1. [Trees and Hashmap](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/5%20TREES%20AND%20HASHING)
 
 1. [Graph](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/6%20Graph%20ADT)
+
+1. [Recursion](./14%20Recursion/)
 
 1. [Dynamic Programming](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/7%20Dynamic%20Programming)
 
