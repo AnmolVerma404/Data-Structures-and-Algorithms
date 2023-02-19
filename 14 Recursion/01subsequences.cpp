@@ -4,6 +4,16 @@
  * This is different from subarray as it does not contain gap
  * In Subarray you are only allowed to have contiguous element of array
  */
+
+/*
+ * TIPS
+ * In subsequence problem, most of the time it gives TLE
+ * That means it's probabily is using DP
+ * In array it's easy for taking index in consideration for overlapping subproblems.
+ * In String Subsequence try to not use a temp/{extra space string} to store
+ * Try to use only index, that's how you would be able to cache it.
+ * Also In some problem you might store in char instead of int
+ */
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -66,6 +76,5 @@ int main()
     vector<int> temp;
     printAllSubsequencesRecursive(v, temp, 0, n);
     printAllSubsequencesIterative(v);
-    cout << (1 << n);
     return 0;
 }
