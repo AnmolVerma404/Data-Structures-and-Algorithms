@@ -46,3 +46,7 @@ Sheet
 *.exe
 *.out
 *.app
+
+# temp
+temp.*
+a.cpp
