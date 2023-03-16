@@ -42,3 +42,5 @@
 1. [Bit Manipulation](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/8%20Bit%20Manupulation)
 
 1. [Greedy Algorithm](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/9%20Greedy%20Algorithm)
+
+1. [C++ Important Function](./15%20C%2B%2B%20Important%20Function/)
