@@ -71,6 +71,9 @@ int main()
      * 1 1 2 3 5 8 ....
      * As we are calling fibo inside the fibo lambda function we are accessing it from outside the function block i.e. outside {} brackets
      * Therefore we need to tell the labda function about that
+     * Instead of writing function<int(int)> we can write auto, as (-> int) self justifies that the function is returning int
+     * The first int specify the return type of the function and the in inside () bracket specify the parameter of the function
+     * In the case of lambda function itself writing & is necessary as it pass the function by reference
      */
     function<int(int)> fibo = [&fibo](int n) -> int // For convension and in the later version of c++ we can use just [&] instead of [&fibo]
     {
@@ -79,5 +82,16 @@ int main()
         return fibo(n - 1) + fibo(n - 2);
     };
     cout << fibo(5) << "\n";
+
+    int x = 3;
+    function<bool(int)> xMinus = [x, &xMinus](int n) -> bool // again just [&] will also work
+    {
+        if (n == x)
+            return true;
+        if (n < x)
+            return false;
+        return xMinus(n - 1);
+    };
+    cout << xMinus(2) << " " << xMinus(5) << "\n";
     return 0;
 }
