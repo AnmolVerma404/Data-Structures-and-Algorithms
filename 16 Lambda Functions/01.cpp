@@ -69,8 +69,10 @@ int main()
     /*
      * Fibonacci Sequence lambda function code
      * 1 1 2 3 5 8 ....
+     * As we are calling fibo inside the fibo lambda function we are accessing it from outside the function block i.e. outside {} brackets
+     * Therefore we need to tell the labda function about that
      */
-    function<int(int)> fibo = [&](int n) -> int
+    function<int(int)> fibo = [&fibo](int n) -> int // For convension and in the later version of c++ we can use just [&] instead of [&fibo]
     {
         if (n == 0 || n == 1)
             return 1;
