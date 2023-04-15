@@ -66,5 +66,16 @@ int main()
         return p1.first<p2.first; });
     printArray(tempPair);
 
+    /*
+     * Fibonacci Sequence lambda function code
+     * 1 1 2 3 5 8 ....
+     */
+    function<int(int)> fibo = [&](int n) -> int
+    {
+        if (n == 0 || n == 1)
+            return 1;
+        return fibo(n - 1) + fibo(n - 2);
+    };
+    cout << fibo(5) << "\n";
     return 0;
 }
