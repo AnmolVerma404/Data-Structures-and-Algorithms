@@ -3,7 +3,7 @@
  * Or paste the file in your folder and #include "fileName.h" and use the class
  * Here is the example how to use DisjointSet.h class
  * If the .h file is not in the same directory, you can use #include "../fileName.h" for upper directory.
- * Or use #include "./folderName/fileName.h" for lower directory
+ * Or use #include "./folderName/fileName.h" for lower directory.
  */
 
 #include "DisjointSet.h"
