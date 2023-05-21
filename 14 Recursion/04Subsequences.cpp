@@ -31,6 +31,13 @@ int func(string &s1, string &s2, int i, int j)
     }
 }
 
+/*
+ * In the iterative solution we didn't need a dp of m+1 and n+1 size even if we have written
+ * But in the case of tabulation we need it
+ * The reason is **index shifting**
+ * Index shifting happens when the base case of our recursive code is less than 0
+ * As in tabulation we can't write less than 0 base case. Therefore we add an extra index.
+ */
 int longestCommonSubsequence(string s1, string s2)
 {
     dp.resize(n + 1, vector<int>(m + 1, 0));
