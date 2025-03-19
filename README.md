@@ -4,6 +4,7 @@
 <h3>From where to solve problem</h3>
 
 - [DSA Sheets](https://github.com/AnmolVerma404/Data-Structures-and-Algorithms/tree/master/13%20DSA%20Sheets)
+- [Leetcode Company Wise questions](https://github.com/krishnadey30/LeetCode-Questions-CompanyWise)
 
 <h3>Youtube channels to follow</h3>
 
